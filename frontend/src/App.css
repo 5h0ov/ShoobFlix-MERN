@@ -17,7 +17,7 @@
 
 .main-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2)),
-    url("/main-IN.png");
+    url("/main-IN.png");  /* remember to put the / before the image.png */
   /* background-repeat: no-repeat;
   background-size: cover; */
 }
