@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FaTrashAlt } from "react-icons/fa";
 import { IoMdRefresh } from "react-icons/io";
+import { Tooltip } from 'react-tooltip'
 
 const Favourite = () => {
     const [results, setResults] = useState([]);
@@ -60,9 +61,14 @@ const Favourite = () => {
                 <div className='max-w-full  mx-auto '>
                 <div className="flex flex-col md:flex-row items-center ml-12 mb-8">
                     <h1 className="font-bold text-4xl sm:text-5xl ">Your Favourites</h1>
-                    <button className="flex py-2  md:ml-24 mt-5 sm:mt-0 px-4 rounded bg-red-600
-                         hover:bg-red-700/80 active:bg-red-900" onClick={handleRefresh}><IoMdRefresh className="size-6 mr-2" />{loading ? 'Refreshing...' : 'Refresh'}
-                         </button>
+
+                    <a className="refresh">
+                        <Tooltip anchorSelect=".refresh" place="bottom" content='Refresh The List' />
+                        <button className="flex py-2  md:ml-24 mt-5 sm:mt-0 px-4 rounded bg-red-600 hover:bg-red-700/80 active:bg-red-900 font-bold text-lg" 
+                        onClick={handleRefresh}><IoMdRefresh className="size-6 mr-2" />{loading ? 'Refreshing...' : 'Refresh'}
+                        </button>
+                    </a>
+
                 </div>  
                     <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4'>
                         
@@ -75,13 +81,13 @@ const Favourite = () => {
                                 <div className='bg-slate-900/40 p-4 rounded-md '>
                                     <img src={`${ORIGINAL_IMG_URL}${item.poster_path}`} alt="image" />
                                 </div>  
-                                <p className='mt-2 font-semibold text-2xl text-center'>{item.title || item.name}</p>
+                                <p className='mt-3 font-semibold text-3xl text-center'>{item.title || item.name}</p>
                                 <p className='text-center'>{item.release_date?.split('-')[0] || item.first_air_date?.split('-')[0]}</p>
                                 <p className='text-center'>{item.adult ? '18+' : 'PG-13'}</p>
                                 <p className='text-center'>{item.runtime ? `${item.runtime} min` : ''}</p>
                                 <p className='text-center'>{item.genres.map(genre => genre.name).join(' & ')}</p>
                                 {(item.contentType === 'tv') && <p className='text-center'>{item.number_of_seasons} Seasons</p>}
-                                <p className='text-center'>{item.vote_average} / 10</p>
+                                <p className='text-center text-lg text-red-500 font-bold'>{item.vote_average} / 10</p>
                                 <button className='absolute top-2 right-2 transform transition-all duration-300 hover:scale-125 text-red-600' onClick={async (e) => {
                                     e.preventDefault(); // prevent the default action (navigating to watch page)
                                     try {

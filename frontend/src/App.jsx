@@ -5,10 +5,11 @@ import Login from './pages/Login.jsx'
 import SignUp from './pages/SignUp.jsx'
 import Footer from './components/Footer.jsx'
 import PlayPage from './pages/PlayPage.jsx'
-import { ToastContainer } from 'react-toastify';
 import { useStore } from './store/store.js'
 import './App.css'
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-tooltip/dist/react-tooltip.css'
 import Favourite from './pages/Favourite.jsx'
 import SearchResults from './pages/SearchResults.jsx'
 import AvatarSelect from './pages/avatarSelect.jsx'

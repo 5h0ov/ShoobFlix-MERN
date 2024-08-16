@@ -9,6 +9,7 @@ import { LuLogOut } from "react-icons/lu";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { SMALL_IMG_URL } from '../utils/constant.js';
 import { RxAvatar } from "react-icons/rx";
+import { Tooltip } from 'react-tooltip'
 
 const Navbar = ({ onSearch }) => {
     const [isHamburgerOpen, setisHamburgerOpen] = useState(false);
@@ -93,10 +94,15 @@ const Navbar = ({ onSearch }) => {
 
 
   return (
+    
     <nav className="flex flex-wrap mb-40 md:mb-20  justify-between items-center max-w-6xl mx-auto h-24  relative p-4">
+        
         <div className="flex  items-center gap-10 mt-2 z-20">
             <Link to='/'>
+            <a className='home'>
+                <Tooltip anchorSelect=".home" place="bottom" content='Home' />
                 <img src="/logo.png" alt="logo" className="rounded-full hover:scale-110 transition-all duration-200 ease-in-out w-32 sm:w-44" />
+            </a>
             </Link>
 
              {/* for desktop */}
@@ -125,16 +131,23 @@ const Navbar = ({ onSearch }) => {
                         placeholder="Search..."
                     />
                     <Link to={`/search?query=${query}`}  className="absolute right-2 text-gray-400">
+                    <a className='search'>
+                        <Tooltip anchorSelect=".search" place="bottom" content='Search Results' />
                         <FaSearch />
+                    </a>
                     </Link>
                 </div>
         <div className="flex flex-col sm:flex-row items-center mt-4 sm:mt-0">
-            
-                {user.avatar ? <img src={user.avatar} alt="avatar" className="h-8 flex rounded cursor-pointer hover:scale-125 transition-all duration-200 ease-in-out" onClick={() => navigate('/editUser')} /> : <RxAvatar className='flex size-10 mb-3 sm:mb-0 rounded cursor-pointer hover:scale-125 transition-all duration-200 ease-in-out' onClick={() => navigate('/editUser')} /> }
-
-                <span className="text-white hover:underline hover:scale-125 transition duration-200 ease-in-out text-xl cursor-pointer ml-4 sm:ml-0" onClick={logout}>
-                    <LuLogOut className='size-8 sm:ml-3' />
-                </span>
+                <a className='update-user'>
+                    <Tooltip anchorSelect=".update-user" place="bottom" content='Update User' />
+                    {user.avatar ? <img src={user.avatar} alt="avatar" className="h-8 flex rounded cursor-pointer hover:scale-125 transition-all duration-200 ease-in-out " onClick={() => navigate('/editUser')} /> : <RxAvatar className='flex size-10 mb-3 sm:mb-0 rounded cursor-pointer hover:scale-125 transition-all duration-200 ease-in-out ' onClick={() => navigate('/editUser')} /> }
+                </a>
+                <a className="log-out" >
+                <Tooltip anchorSelect=".log-out" place="bottom" content='Log Out' />
+                    <span className="text-white hover:underline hover:scale-125 transition duration-200 ease-in-out text-xl cursor-pointer ml-4 sm:ml-0" onClick={logout}>
+                        <LuLogOut className='size-8 sm:ml-3' />
+                    </span>
+                </a>
                 <div className="sm:hidden flex-col md:flex-row mt-4 sm:mt-0">
                     <GiHamburgerMenu className="text-white text-4xl cursor-pointer hover:scale-110 transition-all duration-200 ease-in-out active:scale-125" onClick={toggle} />
                 </div>
