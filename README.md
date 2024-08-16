@@ -40,3 +40,8 @@ Features:
 
 ![image](https://github.com/user-attachments/assets/7b250b00-998f-4037-927d-a5764dfb8dd3)
 
+
+
+## This has been deployed with Render
+Here we dont need to deploy frontend and backend separately unlike vercel and netlify although i will deploy there too for my knowledge!
+
