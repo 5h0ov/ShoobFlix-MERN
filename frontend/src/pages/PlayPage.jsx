@@ -15,7 +15,6 @@ import { FaHeart } from "react-icons/fa6";
 import { FaTrashAlt } from "react-icons/fa";
 import { ORIGINAL_IMG_URL, MOVIE_CATEGORY, TV_CATEGORY, SMALL_IMG_URL} from '../utils/constant.js'
 
-
 const PlayPage = () => {
     const {id} = useParams(); // get the id from the url
     const[trailer, setTrailer] = useState([]);
@@ -46,7 +45,6 @@ const PlayPage = () => {
             seasonsSetRef.current = true; // Mark seasons as set
         }
     }, [content, id]);
-
     
 
     const trailerDistributionRef = useRef([]);
@@ -345,7 +343,10 @@ const PlayPage = () => {
               <button
                 key={index}
                 className={`text-white py-2 px-4 bg-slate-600/60 hover:bg-slate-700/70 rounded-md active:bg-slate-900/90 ${currentTrailer === index ? 'bg-slate-900 text-xl' : ''}`}
-                onClick={() => setCurrentTrailer(index)}
+                onClick={() => {
+                    window.scrollTo(0, 0);
+                  setCurrentTrailer(index)
+                }}
               >
                 Trailer {selectedSeason} - {index + 1}
               </button>
