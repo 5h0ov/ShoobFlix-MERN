@@ -36,4 +36,9 @@ Features:
 
 ![image](https://github.com/user-attachments/assets/5fc4e855-376b-4000-a529-4c3a60da45db)
 
+<<<<<<< HEAD
 ![image](https://github.com/user-attachments/assets/7b250b00-998f-4037-927d-a5764dfb8dd3)
+=======
+![image](https://github.com/user-attachments/assets/7b250b00-998f-4037-927d-a5764dfb8dd3)
+
+>>>>>>> ed61709c257d094b2b92e4f2a144cab92e6d0418
