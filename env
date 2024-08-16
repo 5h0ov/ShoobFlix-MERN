@@ -1,0 +1,5 @@
+MONGODB_URI = 
+PORT = 3000
+JWT_SECRET = 
+NODE_ENV = development  # for local host: development / for deployment: production
+TMDB_API_KEY = 
