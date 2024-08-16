@@ -7,7 +7,6 @@ import { useHomeContent } from '../store/homeContent.js'
 import { useEffect, useState, useRef } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
-import { set } from 'mongoose'
 import { toast } from "react-toastify";
 import Navbar from '../components/Navbar.jsx'
 import { FaAnglesRight } from "react-icons/fa6";
@@ -15,7 +14,6 @@ import { FaAnglesLeft } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa6";
 import { FaTrashAlt } from "react-icons/fa";
 import { ORIGINAL_IMG_URL, MOVIE_CATEGORY, TV_CATEGORY, SMALL_IMG_URL} from '../utils/constant.js'
-import Carousel from '../components/Carousel.jsx'
 
 
 const PlayPage = () => {

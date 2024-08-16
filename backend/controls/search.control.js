@@ -1,9 +1,5 @@
-// Initialize express router
-
 import { fetchTMDB } from "../tmdb.api.js";
-import { User } from "../models/modelUser.js";
-
-
+import express from "express";
 
 export async function searchMovie(req, res) {
     const { id } = req.params; // reminder this is not a number its a search query(string)

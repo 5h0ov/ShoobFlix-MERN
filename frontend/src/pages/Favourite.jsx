@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer.jsx";
 import axios from "axios";
 import { ORIGINAL_IMG_URL } from "../utils/constant.js";
 import { Link } from "react-router-dom";

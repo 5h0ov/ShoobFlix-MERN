@@ -1,4 +1,3 @@
-import { parse } from "dotenv";
 import { User } from "../models/modelUser.js";
 import express from "express";
 

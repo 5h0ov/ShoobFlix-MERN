@@ -2,7 +2,7 @@ import {useState, useEffect, useRef} from 'react'
 import { Link } from 'react-router-dom'
 import { useStore } from '../store/store.js'
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+
 
 
 const Login = () => {
@@ -10,7 +10,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const {login} = useStore();
-  const {user} = useStore();
+  // const {user} = useStore();
 
 
   const handleLogin = async (e) => {

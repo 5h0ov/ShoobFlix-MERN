@@ -11,7 +11,7 @@ import { SMALL_IMG_URL } from '../utils/constant.js';
 import { RxAvatar } from "react-icons/rx";
 import { Tooltip } from 'react-tooltip'
 
-const Navbar = ({ onSearch }) => {
+const Navbar = () => {
     const [isHamburgerOpen, setisHamburgerOpen] = useState(false);
     const [searchResults, setSearchResults] = useState([]);
     const {user, logout} = useStore();
