@@ -13,11 +13,13 @@ Features:
 - This uses TMDB Api to fetch movie/tv show details.
 - Uses MERN Stack and Tailwind CSS for quick and easy styling.
 - Features tooltips for user experience
-- And its almost kind of responsive except the navbar...didn't fix the navbar 
+- And its almost kind of responsive except the navbar...didn't fix the navbar
+- Used Zustand as the global state management library for its simplicity. Redux is used for its scalability altho i will use redux later too
 
 # How to Run it Locally?
 - Clone this repo to your local system
-- go to the .env template file provided in the repo and paste your own api keys and mongodb uri to make it work in local host
+- go to the env template file provided in the repo and paste your own api keys and mongodb uri to make it work in local host
+- Rename env to .env in your system
 - Open Two Terminals ( for better accessibility )
 - In one of them write `npm install` or `npm i`
 - In the other write `cd frontend` then `npm install` or `npm i`
@@ -39,6 +41,12 @@ Features:
 ![image](https://github.com/user-attachments/assets/7b250b00-998f-4037-927d-a5764dfb8dd3)
 
 ![image](https://github.com/user-attachments/assets/7b250b00-998f-4037-927d-a5764dfb8dd3)
+
+
+## Demo Video
+
+https://github.com/user-attachments/assets/536191c3-2ff0-40e1-817b-6b3ea9eecb1c
+
 
 
 
