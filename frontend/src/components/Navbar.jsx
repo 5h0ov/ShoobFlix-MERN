@@ -180,11 +180,17 @@ const Navbar = () => {
         {isHamburgerOpen && (
             <div className="sm:hidden  items-center gap-2 bg-black border  border-slate-800  top-16 right-0 w-36 rounded-lg shadow-md py-3 z-20" style={{ display: 'block !important' }}>
                 <Link to={'/'} className=' hover:underline active:font-semibold p-3 transition duration-200 ease-in'
-                onClick={toggle}>
+                onClick={()=>{ 
+                    toggle
+                    setContent("movie")
+                }}>  
                     Movies
                 </Link>
                 <Link to={'/'} className='  hover:underline active:font-semibold p-3 transition duration-200 ease-in'
-                onClick={toggle}>
+                onClick={()=>{ 
+                    toggle
+                    setContent("tv")
+                }}>  
                     TV Shows
                 </Link>
                 <Link to={'/favourite'} className=' hover:underline active:font-semibold p-3 transition duration-200 ease-in'
