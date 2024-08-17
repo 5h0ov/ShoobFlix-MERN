@@ -18,7 +18,8 @@ Features:
 
 # How to Run it Locally?
 - Clone this repo to your local system
-- go to the .env template file provided in the repo and paste your own api keys and mongodb uri to make it work in local host
+- go to the env template file provided in the repo and paste your own api keys and mongodb uri to make it work in local host
+- Rename env to .env in your system
 - Open Two Terminals ( for better accessibility )
 - In one of them write `npm install` or `npm i`
 - In the other write `cd frontend` then `npm install` or `npm i`
