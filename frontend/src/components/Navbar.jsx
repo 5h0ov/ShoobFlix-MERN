@@ -99,7 +99,7 @@ const Navbar = () => {
         
         <div className="flex  items-center gap-10 mt-2 z-20">
             <Link to='/'>
-            <button className='home'>
+            <button className='home' aria-label='Home'>
                 <Tooltip anchorSelect=".home" place="bottom" content='Home' />
                 <img src="/logo.png" alt="logo" className="rounded-full hover:scale-110 transition-all duration-200 ease-in-out w-32 sm:w-44" />
             </button>
@@ -131,18 +131,18 @@ const Navbar = () => {
                         placeholder="Search..."
                     />
                     <Link to={`/search?query=${query}`}  className="absolute right-2 text-gray-400">
-                    <a className='search'>
+                    <button className='search' aria-label="Search">
                         <Tooltip anchorSelect=".search" place="bottom" content='Search Results' />
                         <FaSearch />
-                    </a>
+                    </button>
                     </Link>
                 </div>
         <div className="flex flex-col sm:flex-row items-center mt-4 sm:mt-0">
-                <button className='update-user'>
+                <button className='update-user' aria-label='Update User'>
                     <Tooltip anchorSelect=".update-user" place="bottom" content='Update User' />
                     {user.avatar ? <img src={user.avatar} alt="avatar" className="h-8 flex rounded cursor-pointer hover:scale-125 transition-all duration-200 ease-in-out " onClick={() => navigate('/editUser')} /> : <RxAvatar className='flex size-10 mb-3 sm:mb-0 rounded cursor-pointer hover:scale-125 transition-all duration-200 ease-in-out ' onClick={() => navigate('/editUser')} /> }
                 </button>
-                <button className="log-out" >
+                <button className="log-out" aria-label="Log out">
                 <Tooltip anchorSelect=".log-out" place="bottom" content='Log Out' />
                     <span className="text-white hover:underline hover:scale-125 transition duration-200 ease-in-out text-xl cursor-pointer ml-4 sm:ml-0" onClick={logout}>
                         <LuLogOut className='size-8 sm:ml-3' />
