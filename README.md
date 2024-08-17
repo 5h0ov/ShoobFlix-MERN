@@ -13,7 +13,8 @@ Features:
 - This uses TMDB Api to fetch movie/tv show details.
 - Uses MERN Stack and Tailwind CSS for quick and easy styling.
 - Features tooltips for user experience
-- And its almost kind of responsive except the navbar...didn't fix the navbar 
+- And its almost kind of responsive except the navbar...didn't fix the navbar
+- Used Zustand as the global state management library for its simplicity. Redux is used for its scalability altho i will use redux later too
 
 # How to Run it Locally?
 - Clone this repo to your local system
