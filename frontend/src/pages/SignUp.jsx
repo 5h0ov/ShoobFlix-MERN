@@ -9,6 +9,7 @@ const SignUp = () => {
   const [email, setEmail] = useState(emailValue || "");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const consent = localStorage.getItem('cookieConsent');
 
   const {signup} = useStore();  // gets the signup function from the store
 
@@ -16,7 +17,7 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault(); // prevents the page from refreshing
     // console.log({ username, email, password }); // Log the data
-    signup({username, email, password});  // calls the signup function from the store
+    signup({username, email, password, consent});  // calls the signup function from the store
 
     
   } 

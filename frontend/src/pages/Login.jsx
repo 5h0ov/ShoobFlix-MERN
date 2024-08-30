@@ -11,11 +11,11 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const {login} = useStore();
   // const {user} = useStore();
-
+  const consent = localStorage.getItem('cookieConsent');
 
   const handleLogin = async (e) => {
     e.preventDefault(); // prevents the page from refreshing
-    const res = await login({ email, password }); // calls the login function from the store
+    const res = await login({ email, password , consent}); // calls the login function from the store
     // console.log(res);
 
     // console.log("res.avatarSelectionRequired: ", res.avatarSelectionRequired);

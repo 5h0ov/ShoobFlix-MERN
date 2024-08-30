@@ -2,7 +2,10 @@ import jwt from 'jsonwebtoken';
 import { ENV_VARS } from './envVar.js';
 
 
-export const genTokenAndSendCookie = (userId, res) => {
+export const genTokenAndSendCookie = (userId, res, consent) => {
+    if (consent !== 'accepted') {
+        return null;
+      }
     const token = jwt.sign({ userId }, ENV_VARS.JWT_SECRET, { expiresIn: '12d' } );
     // please  dont  use id: userId, use userId, it is the standard
     // it caused a lot of problem and debugging

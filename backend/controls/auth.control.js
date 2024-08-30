@@ -57,7 +57,7 @@ export async function handleSkip(req, res) {
 
 export async function signup(req, res) {
   try {
-    const { username, email, password } = req.body;
+    const { username, email, password, consent } = req.body;
 
     if (!username || !email || !password) {
       return res
@@ -117,7 +117,7 @@ export async function signup(req, res) {
       avatar: null,
     });
 
-    genTokenAndSendCookie(newUser._id, res);
+    genTokenAndSendCookie(newUser._id, res, consent);
 
     // test with postman
     await newUser.save();
@@ -138,7 +138,7 @@ export async function signup(req, res) {
 
 export async function login(req, res) {
   try {
-    const { email, password } = req.body;
+    const { email, password, consent } = req.body;
 
     if (!email || !password) {
       return res
@@ -163,7 +163,7 @@ export async function login(req, res) {
         .json({ success: false, message: "Invalid Password" });
     }
 
-    genTokenAndSendCookie(user._id, res);
+    genTokenAndSendCookie(user._id, res, consent);
 
     res.status(200).json({
       success: true,

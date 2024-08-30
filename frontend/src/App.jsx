@@ -15,6 +15,7 @@ import SearchResults from './pages/SearchResults.jsx'
 import AvatarSelect from './pages/avatarSelect.jsx'
 import UserEdit from './pages/userEdit.jsx'
 import Page404 from './pages/Page404.jsx'
+import CookieConsent from './components/CookieConsent.jsx'
 
 function App() {
   const location = useLocation();
@@ -55,12 +56,13 @@ function App() {
         theme="dark"
         transition: Bounce
         />
+        <CookieConsent />
         <Routes>
           <Route path='/' element={<UserCheck/>}/>
           <Route path='/login' element={!user? <Login/> : < Navigate to={"/"} /> }/>
-          <Route path='/signup' element={!user? <SignUp/> : < Navigate to={"/"} />}/>
-          <Route path='/updateAvatar' element={(user && !user.avatar) ? <AvatarSelect/> : < Navigate to={"/login"} />}/>
-          <Route path='/watch/:id' element={user? <PlayPage/> : < Navigate to={"/login"} />}/>
+          <Route path='/signup' element={!user? <SignUp/> : <Navigate to={"/"} />}/>
+          <Route path='/updateAvatar' element={(user && !user.avatar) ? <AvatarSelect/> : <Navigate to={"/login"} />}/>
+          <Route path='/watch/:id' element={user? <PlayPage/> : <Navigate to={"/login"} />}/>
           <Route path='/favourite' element={user ? <Favourite /> : <Navigate to={"/login"} />} />
           <Route path='/search' element={user ? <SearchResults /> : <Navigate to={"/login"} />} />
           <Route path='/editUser' element={user ? <UserEdit /> : <Navigate to={"/login"} />} />
