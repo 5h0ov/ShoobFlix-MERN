@@ -14,7 +14,7 @@ export const genTokenAndSendCookie = (userId, res, consent) => {
     // so when you try to access it, you will get undefined
     // and you will spend hours debugging it
     
-    res.cookie("jwt", token, {
+    res.cookie("jwt-shoobflix", token, {
         maxAge: 12*24*60*60*1000,   // 12 days in milliseconds
         httpOnly: true , // cookie is only accessible by the server, and prevent XSS attacks cross-site scripting attacks and make it not accessible via JS
         sameSite: "strict",  // cookie is not sent with cross-origin requests, protecting from forgery attacks
