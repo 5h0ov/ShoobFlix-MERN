@@ -181,7 +181,7 @@ export async function login(req, res) {
 
 export async function logout(req, res) {
   try {
-    res.clearCookie("jwt");
+    res.clearCookie("jwt-shoobflix");
     res
       .status(200)
       .json({ success: true, message: "User logged out successfully" });
