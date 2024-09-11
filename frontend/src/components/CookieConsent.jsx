@@ -21,7 +21,7 @@ const CookieConsent = () => {
   if (consent) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 p-4 bg-gray-800 text-white flex justify-between items-center">
+    <div className="fixed bottom-0 left-0 right-0 p-4 bg-gray-800 text-white flex justify-between items-center z-50">
       <p>We use cookies to improve your experience. By using our site, you agree to our use of cookies. <span className='cursor-pointer underline'>Learn more...</span></p>
       <div className='font-bold text-lg'>
         <button onClick={handleAccept} className="mr-2 p-3 mb-4 bg-green-500 rounded hover:bg-green-600 active:bg-green-800">Accept</button>
