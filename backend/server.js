@@ -10,6 +10,7 @@ import movieRoutes from "./routes/movie.route.js";
 import tvRoutes from "./routes/tv.route.js";
 import searchRoutes from "./routes/search.route.js";
 import favoriteRoutes from "./routes/favorite.route.js";
+import commentsRoutes from "./routes/comments.route.js";
 import { checkUserAuth } from "./checkUserAuth.js";
 
 import { ENV_VARS } from "./config/envVar.js";
@@ -38,7 +39,7 @@ app.use("/api/search", checkUserAuth, searchRoutes);
 // it can modify the request and response objects
 // the /movies and /tv routes are going to be later used in frontend to fetch their respective content trending data!!!
 app.use("/api/favorite", checkUserAuth, favoriteRoutes); // hey express, use the favoriteRoutes for any requests that start with /api/favorite
-
+app.use("/api/comments", checkUserAuth, commentsRoutes); // hey express, use the commentRoutes for any requests that start with /api/comments
 // console.log(process.env.MONGODB_URI);
 
 // to serve the frontend in production

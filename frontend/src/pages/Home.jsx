@@ -4,7 +4,7 @@ import  getTrending  from '../utils/getTrending.jsx'
 // import {useStore} from '../store/store.js'
 import {useHomeContent } from '../store/homeContent.js'
 import Navbar from '../components/Navbar.jsx'
-import Footer from '../components/Footer.jsx'
+// import Footer from '../components/Footer.jsx'
 import { FaPlay } from "react-icons/fa";
 import { MdInfoOutline } from "react-icons/md";
 import { MOVIE_CATEGORY, TV_CATEGORY, ORIGINAL_IMG_URL, SMALL_IMG_URL } from '../utils/constant.js';
@@ -86,12 +86,12 @@ const Home = () => {
             </div>
 
             <div className='flex gap-2 mt-8'>
-              <Link to={`/watch/${trending?.id}`} className='bg-white hover:bg-slate-300 transition duration-300 active:bg-slate-400 px-4 py-2  items-center rounded-md text-xl text-black font-bold'>
+              <Link to={`/watch/${content}/${trending?.id}`} className='bg-white hover:bg-slate-300 transition duration-300 active:bg-slate-400 px-4 py-2  items-center rounded-md text-xl text-black font-bold'>
                 <FaPlay className='inline-block mr-2 fill-black size-6 ' /> 
                 Play
               </Link>
 
-              <Link to={`/watch/${trending?.id}`} className='bg-neutral-600/80  hover:bg-neutral-700/90 active:bg-neutral-800/90 transition duration-300 px-4 py-2  items-center rounded-md text-slate-300'>
+              <Link to={`/watch/${content}/${trending?.id}`} className='bg-neutral-600/80  hover:bg-neutral-700/90 active:bg-neutral-800/90 transition duration-300 px-4 py-2  items-center rounded-md text-slate-300'>
                 <MdInfoOutline className='inline-block mr-2 fill-slate-300 size-6 ' />
                  More Info
               </Link>

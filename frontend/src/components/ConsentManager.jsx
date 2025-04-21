@@ -1,7 +1,7 @@
 // frontend/src/components/CookieConsent.jsx
 import { useState, useEffect } from 'react';
 
-const CookieConsent = () => {
+const ConsentManager = () => {
   const [consent, setConsent] = useState(localStorage.getItem('cookieConsent'));
 
   useEffect(() => {
@@ -31,4 +31,4 @@ const CookieConsent = () => {
   );
 };
 
-export default CookieConsent;
+export default ConsentManager;

@@ -10,7 +10,7 @@ const Footer = () => {
             <div className="h-2 w-full bg-zinc-800"></div>   {/* Separator Component */}
 
             <footer className="text-center text-xl text-white  bg-black py-6 md:px-8 " >
-                <p className="">&copy; 2024 ShoobFlix. All Rights Reserved | Made by <a className="hover:underline" href="https://github.com/5h0ov" target="_blank"> Shuvadipta Das </a> </p>
+                <p className="">&copy; 2025 ShoobFlix. All Rights Reserved | Made by <a className="hover:underline" href="https://github.com/5h0ov" target="_blank"> Shuvadipta Das </a> </p>
                 <div className="social-icons flex justify-center mt-2">
                     <ul className="flex justify-between space-x-4">
                         <li>

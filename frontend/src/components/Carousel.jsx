@@ -96,7 +96,7 @@ const Carousel = ({category}) => {
         {/* MAIN Carousel */}
         <div className='flex gap-4 overflow-x-scroll no-scrollbar' ref={scrollRef}> 
           {media.map((item, index) => (
-            <Link to={`/watch/${item.id}`} className='min-w-[260px] group relative' key={index} >
+            <Link to={`/watch/${content}/${item.id}`} className='min-w-[260px] group relative' key={index} >
                 <div className="overflow-hidden rounded-md transition-transform duration-300 ease-in-out group-hover:scale-125 ">
                   <img src={SMALL_IMG_URL + item.backdrop_path} alt="media image" className='' />
                 </div>

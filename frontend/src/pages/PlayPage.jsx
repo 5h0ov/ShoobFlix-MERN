@@ -3,10 +3,9 @@ import axios from 'axios'
 import ReactPlayer from 'react-player'
 import { Link } from 'react-router-dom'
 import { useStore } from '../store/store.js'
-import { useHomeContent } from '../store/homeContent.js'
+// import { useHomeContent } from '../store/homeContent.js'
 import { useEffect, useState, useRef } from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 import { toast } from "react-toastify";
 import Navbar from '../components/Navbar.jsx'
 import { FaAnglesRight } from "react-icons/fa6";
@@ -14,6 +13,7 @@ import { FaAnglesLeft } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa6";
 import { FaTrashAlt } from "react-icons/fa";
 import { ORIGINAL_IMG_URL, MOVIE_CATEGORY, TV_CATEGORY, SMALL_IMG_URL} from '../utils/constant.js'
+import CommentSection from '../components/comments/CommentSection.jsx'
 
 const PlayPage = () => {
     const {id} = useParams(); // get the id from the url
@@ -22,13 +22,16 @@ const PlayPage = () => {
     const [selectedSeason, setSelectedSeason] = useState(1);
     const [seasons, setSeasons] = useState(3); // default 3 seasons
     const [Loading, setLoading] = useState(true);
-    const {content} = useHomeContent();
+    // const {content} = useHomeContent();
+    const content = location.pathname.includes('watch/movie/') ? 'movie' : 'tv';
     const [media, setMedia] = useState([]);
     const [similar, setSimilar] = useState([]);  
     const [info, setInfo] = useState([]);
     const [Arrow, setArrow] = useState(false);  // for arrow navigation
     const [isFavorited, setIsFavorited] = useState(false); // state to track if the content is favorited
     const [removeFromFav, setRemoveFromFav] = useState(false); // state to track if the content is removed from favorites
+
+    // console.log('info:',info);
 
     const seasonsSetRef = useRef(false); // Ref to track if seasons have been set
     useEffect(() => {
@@ -293,29 +296,10 @@ const PlayPage = () => {
                     
                 </div>
 
-                {/* Display the info of the media */}
-                <div className="flex flex-col items-center ml-0 md:ml-8 text-white justify-center gap-20 max-w-6xl mx-auto md:flex-row">
-                  <div className="mb-4 md:mb-0">
-                    <h1 className="text-5xl font-bold text-balance">{info?.title || info?.name}</h1> 
-                    <p className="text-lg mb-10 mt-2">
-                      {formattedReleaseDate(info?.release_date || info?.first_air_date)} | {info?.adult ? (<span className='text-red-400 font-semibold text-xl'>18+</span>) : (<span className='text-green-300 font-semibold text-xl'>PG-13</span>)}{" "} | {formatRuntime(info?.runtime)} | {info?.genres?.map(genre => genre.name).join(' & ')} | {<span className='mt-4 p-2  text-red-600 font-bold text-center text-2xl bg-slate-700/40 rounded-full'>Rating: {info?.vote_average} / 10</span>}
-                    </p>
-                    <p className="text-lg mb-10">{info?.overview}</p>
-                  </div>
-                  <img src={ORIGINAL_IMG_URL + info.poster_path} className="max-h-[420px] rounded-md md:ml-10" alt="img" />
-                  {isFavorited ? (
-                    <button onClick={handleRemoveFromFavorites} className='flex flex-col gap-2 items-center text-white py-2 px-4 bg-red-600 hover:bg-red-700 rounded-md active:bg-red-950'>
-                        <FaTrashAlt className='size-12  items-center' /> <span className='font-bold'>Remove from Favorites</span>
-                    </button>
-                  ) : (
-                    <button onClick={handleAddToFavorites} className='flex flex-col gap-2 items-center text-white py-2 px-4 bg-red-600 hover:bg-red-700 rounded-md active:bg-red-950'>
-                        <FaHeart className='size-12 items-center' /> <span className='font-bold'>Add to Favorites</span>
-                    </button>
-                  )}
-                </div>
+                
 
                 {/* Display the input for the Seasons of the content */}
-                <div className='mt-4 ml-8'>
+                <div className='ml-8'>
                   <label htmlFor="season-select" className='font-semibold text-xl mb-3'>
                     Select Season:
                   </label>
@@ -335,50 +319,71 @@ const PlayPage = () => {
 
 
 
-        {/* Display the trailers as a season-wise fashion*/}
-      {filteredTrailers?.length > 0 && (
-        <div className='flex flex-col md:flex-row ml-4 items-center mb-4 mt-4 w-full mx-auto'>
-          <div className='flex flex-col md:flex-row  justify-center space-x-2 space-y-2 mb-4'>
-            {filteredTrailers.map((_, index) => (
-              <button
-                key={index}
-                className={`text-white py-2 px-4 bg-slate-600/60 hover:bg-slate-700/70 rounded-md active:bg-slate-900/90 ${currentTrailer === index ? 'bg-slate-900 text-xl' : ''}`}
-                onClick={() => {
-                    window.scrollTo(0, 0);
-                  setCurrentTrailer(index)
-                }}
-              >
-                Trailer {selectedSeason} - {index + 1}
+          {/* Display the trailers as a season-wise fashion*/}
+          {filteredTrailers?.length > 0 && (
+            <div className='flex flex-col md:flex-row ml-4 items-center mb-4 mt-4 w-full mx-auto'>
+              <div className='flex flex-wrap flex-col md:flex-row  justify-center space-x-2 space-y-2 mb-4'>
+                {filteredTrailers.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`text-white py-2 px-4 bg-slate-600/60 hover:bg-slate-700/70 rounded-md active:bg-slate-900/90 ${currentTrailer === index ? 'bg-slate-900 text-xl' : ''}`}
+                    onClick={() => {
+                        window.scrollTo(0, 0);
+                      setCurrentTrailer(index)
+                    }}
+                  >
+                    Trailer {selectedSeason} - {index + 1}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Display the info of the media */}
+          <div className="flex flex-col items-center ml-0 md:ml-8 text-white justify-center gap-10 max-w-6xl mx-auto md:flex-row">
+            <div className="mb-4 md:mb-0">
+              <h1 className="text-5xl font-bold text-balance">{info?.title || info?.name}</h1> 
+              <p className="text-lg mb-10 mt-2">
+                {formattedReleaseDate(info?.release_date || info?.first_air_date)} | {info?.adult ? (<span className='text-red-400 font-semibold text-xl'>18+</span>) : (<span className='text-green-300 font-semibold text-xl'>PG-13</span>)}{" "} | {formatRuntime(info?.runtime)} | {info?.genres?.map(genre => genre.name).join(' & ')} | {info?.episode_run_time ? " TV " : "Movie "} | {<span className='mt-4 p-2  text-red-600 font-bold text-center text-2xl bg-slate-700/40 rounded-full'>Rating: {info?.vote_average} / 10</span>}
+              </p>
+              <p className="text-lg mb-10">{info?.overview}</p>
+            </div>
+            <img src={ORIGINAL_IMG_URL + info.poster_path} className="max-h-[420px] rounded-md md:ml-10" alt="img" />
+            {isFavorited ? (
+              <button onClick={handleRemoveFromFavorites} className='flex flex-col gap-2 items-center text-white py-2 px-4 bg-red-600 hover:bg-red-700 rounded-md active:bg-red-950'>
+                  <FaTrashAlt className='size-12  items-center' /> <span className='font-bold'>Remove from Favorites</span>
               </button>
-            ))}
+            ) : (
+              <button onClick={handleAddToFavorites} className='flex flex-col gap-2 items-center text-white py-2 px-4 bg-red-600 hover:bg-red-700 rounded-md active:bg-red-950'>
+                  <FaHeart className='size-12 items-center' /> <span className='font-bold'>Add to Favorites</span>
+              </button>
+            )}
           </div>
-        </div>
-      )}
 
-      {/* Display the similar content */}
+        {/* Display the similar content */}
 
-          {similar?.length > 0 && (
-            <div className='relative mt-12 max-w-6xl mx-auto flex flex-col' onMouseEnter={()=> setArrow(true)} onMouseLeave={()=> setArrow(false)}>
-              <h2 className='text-5xl font-bold mb-4'>
-                Similar {content === 'movie' ? 'Movies' : 'TV Shows'}
-              </h2>
+        {similar?.length > 0 && (
+          <div className='relative mt-12 max-w-6xl mx-auto flex flex-col' onMouseEnter={()=> setArrow(true)} onMouseLeave={()=> setArrow(false)}>
+            <h2 className='text-5xl font-bold mb-4'>
+              Similar {content === 'movie' ? 'Movies' : 'TV Shows'}
+            </h2>
 
-              <div className='flex gap-4 overflow-x-scroll no-scrollbar ' ref={scrollRef}> 
-            {similar.map((similar, index) => {
-              if (!similar.poster_path) return null; // return null if the media doesn't have a poster
+            <div className='flex gap-4 overflow-x-scroll no-scrollbar ' ref={scrollRef}> 
+          {similar.map((similar, index) => {
+            if (!similar.poster_path) return null; // return null if the media doesn't have a poster
 
-              return (
-                <Link to={`/watch/${similar.id}`} className='min-w-[260px] group relative' key={index} >
-                    <div className="overflow-hidden rounded-md transition-transform duration-300 ease-in-out group-hover:scale-125 ">
-                      <img src={SMALL_IMG_URL + similar.poster_path} alt="content image"   className='' />  {/* used poster here cuz some dont have small image AND POSTER JUST LOOKS BETTER*/}
-                    </div>
-                    <p className='mt-12 mb-4 font-semibold text-xl text-center'>{similar.title || similar.name}</p>
-                </Link>
-              )})}
-            </div> 
+            return (
+              <Link to={`/watch/${content}/${similar.id}`} className='min-w-[260px] group relative' key={index} >
+                  <div className="overflow-hidden rounded-md transition-transform duration-300 ease-in-out group-hover:scale-125 ">
+                    <img src={SMALL_IMG_URL + similar.poster_path} alt="content image"   className='' />  {/* used poster here cuz some dont have small image AND POSTER JUST LOOKS BETTER*/}
+                  </div>
+                  <p className='mt-12 mb-4 font-semibold text-xl text-center'>{similar.title || similar.name}</p>
+              </Link>
+            )})}
+          </div> 
 
 
-            {Arrow && (
+          {Arrow && (
            <>
             <button className='flex items-center justify-center p-2 md:left-4 rounded-md bg-slate-900/20 absolute top-1/2 -translate-y-1/6 text-white z-10 hover:bg-slate-900/80 transition-all duration-200 ease-in-out active:bg-slate-950' onClick={()=>LeftScroll()}>
               <FaAnglesLeft  className='size-14' />
@@ -392,6 +397,8 @@ const PlayPage = () => {
             </div>
           )}
       </div>
+      
+      <CommentSection mediaId={id} mediaType={content} />
     </div>
     </>
   )

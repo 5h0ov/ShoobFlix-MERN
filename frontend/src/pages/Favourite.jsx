@@ -7,12 +7,13 @@ import { toast } from "react-toastify";
 import { FaTrashAlt } from "react-icons/fa";
 import { IoMdRefresh } from "react-icons/io";
 import { Tooltip } from 'react-tooltip'
+// import { useHomeContent } from "../store/homeContent.js";
 
 const Favourite = () => {
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(true);
     const [refreshCount, setRefreshCount] = useState(0); // State to track refresh count
-
+    // const { setContent } = useHomeContent();
 
     useEffect(() => {
         const fetchFavorites = async () => {
@@ -76,7 +77,7 @@ const Favourite = () => {
                     )}
                     {results.map((item, index) => (
                         
-                            <Link to={`/watch/${item.id}`} key={index} className='group relative transform transition-all duration-300 hover:scale-105 hover:bg-slate-950/80 mb-20'>
+                            <Link to={`/watch/${item.contentType}/${item.id}`} key={index} className='group relative transform transition-all duration-300 hover:scale-105 hover:bg-slate-950/80 mb-20'>
                                 <div className='bg-slate-900/40 p-4 rounded-md '>
                                     <img src={`${ORIGINAL_IMG_URL}${item.poster_path}`} alt="image" />
                                 </div>  
